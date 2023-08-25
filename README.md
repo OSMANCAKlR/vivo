@@ -1,4 +1,4 @@
 # asd-group1
 
 
-Test
+Discord is better
