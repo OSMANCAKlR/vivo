@@ -8,4 +8,4 @@ Cynthia
 
 Discord is better. 
 
-This better work
+This better work!
