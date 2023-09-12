@@ -1,0 +1,62 @@
+.nav__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account__container {
+    display: flex;
+    gap: 24px;
+    color: #415fff;
+    font-size: 24px;
+}
+
+.nav__links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav__link {
+    list-style-type: none;
+    
+}
+
+.link {
+    text-decoration: none;
+    color: #415fff;
+    font-weight: 500;
+}
+
+.nav__bottom {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.input {
+    width: 450px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #415fff;
+    color: black;
+}
+
+.input__container {
+    position: relative;
+}
+
+.search__container {
+    padding: 0px 14px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    top: 0;
+    height: 100%;
+    background-color: #415fff;
+}
+
+.search__icon {
+    color: white;
+}

@@ -1,0 +1,5 @@
+.product__ratings{
+    display: flex;
+    gap: 4px;
+    color: gold;
+}

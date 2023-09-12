@@ -1,0 +1,20 @@
+
+
+.hero__img {
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+    object-position: 60% 40%;
+}
+.hero__img2 {
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+    object-position: 60% 30%;
+}
+.hero__img3 {
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+    object-position: 60% 50%;
+}

@@ -1,0 +1,6 @@
+.featured__wrapper{
+    display: flex;
+    margin-top:14px;
+    justify-content: space-between;
+}
+
