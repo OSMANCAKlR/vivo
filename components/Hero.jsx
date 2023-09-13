@@ -15,6 +15,7 @@ function Hero() {
         swipeable
         infiniteLoop
         autoPlay
+        emulateTouch
       >
         <div>
           <Image src={heroimg} className={styles.hero__img} />

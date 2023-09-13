@@ -13,6 +13,7 @@ html {
 
 html, body {
   overflow-x: hidden;
+  color: #242424;
 }
 
 body {
@@ -28,4 +29,8 @@ body {
 
 .container {
   padding: 26px;
+}
+
+button {
+  cursor: pointer;
 }

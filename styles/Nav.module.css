@@ -60,3 +60,27 @@
 .search__icon {
     color: white;
 }
+
+.cart__icon {
+    color: #415fff;
+}
+
+.cart__container{
+    position: relative;
+}
+
+.cart__length {
+    position: absolute;
+    bottom: -20%;
+    right: -30%;
+    z-index: 99;
+    color: white;
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}

@@ -4,3 +4,25 @@
     justify-content: space-between;
 }
 
+.product__container {
+    width: calc(100% / 4.4);
+    transition: all 300ms ease;
+}
+
+.product__checkout {
+    width: 100%;
+    height: 45px;
+    background-color: #09209e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+.product__addtocart {
+    width: 100%;
+    height: 45px;
+    background-color: #415fff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}

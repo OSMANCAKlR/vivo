@@ -1,0 +1,24 @@
+.aboutus__title {
+    font-size: 34px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    color: #415fff;
+}
+
+.text__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aboutus__para {
+    width: 45%;
+}
+
+.figure {
+    width: 45%
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+}

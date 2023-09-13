@@ -1,0 +1,253 @@
+#cart .product__container, .cart__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    background-color: #415fff;
+    color: white;
+    font-family: Newsreader,serif;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 14px;
+}
+
+.cart__body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.cart__empty {
+    margin-top: 24px;
+}
+
+
+.total {
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+}
+
+.price__row {
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    justify-content: space-around;
+    width: 10%;
+}
+
+
+.inputButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.postcode__input {
+    border: 1px solid grey;
+    border-radius: 4px;
+    height: 42px;
+    outline: none;
+    padding-left: 20px;
+}
+
+
+.search__button {
+    align-items: center;
+    background-color: #eaded4;
+    border: 1px solid grey;
+    border-left: none;
+    border-start-end-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    width: 44px;
+}
+
+
+.product__container {
+    flex-direction: row;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+
+.product__wrapperCart {
+    align-items: center;
+    display: flex;
+    width: 38%;
+}
+
+
+.cart__img {
+    height: 154px;
+    width: 174px;
+    object-fit: contain;
+}
+
+
+.product__information {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+
+.cart__input {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 52%;
+}
+
+
+.modal__title {
+    margin-bottom: 14px;
+}
+
+.modal__price {
+    margin-bottom: 8px;
+}
+
+
+
+.product__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.price__text {
+    margin-bottom: 8px;
+}
+
+.btn__checkout {
+    font-size: 16px;
+    margin-top: 14px;
+    padding: 12px 24px;
+    background-color: #415fff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.cart__arrow {
+    font-size: 34px;
+    margin-bottom: 14px;
+    color: #415fff;
+}
+
+.empty__cart {
+    margin-bottom: 20px;
+}
+
+.cart__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.delete__button {
+    background-color: transparent;
+    border: none;
+    color: #cf0000;
+    cursor: pointer;
+    margin-top: 24px;
+    padding-left: 0;
+    width: 48px;
+}
+
+.cart__price {
+    margin-right: 14px;
+}
+
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 999; 
+}
+
+.modal__delivery {
+    margin-top: 14px;
+}
+
+.product__button {
+    font-size: 16px;
+    margin-top: 14px;
+    padding: 12px 24px;
+    background-color: #415fff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.modal {
+    background-color: #fff; /* Modal background color */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow */
+    max-width: 80%; /* Adjust the modal's maximum width as needed */
+    max-height: 80%; /* Adjust the modal's maximum height as needed */
+    overflow-y: auto; /* Allow scrolling if the content overflows */
+    position: relative;
+  }
+  
+  .close__button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+@media (max-width: 480px) { 
+
+    .cart__empty {
+        margin-left: 8px;
+    }
+
+    .eligible__text {
+        margin-left: 8px;
+    }
+
+    .price__row {
+        width: auto;
+        margin-right: 8px;
+    }
+
+    .cart__img {
+        display: none;
+    }
+
+    .cart__title {
+        font-size: 18px;
+    }
+
+    .titleHeader {
+        margin-left: 14px;
+    }
+
+    .cart__arrow {
+        margin-left: 14px;
+    }
+
+    .inputButton {
+        margin-right: 14px;
+    }
+
+    .btn__checkout {
+        margin-right: 14px;
+    }
+}
