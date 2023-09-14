@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import CartContext from "@/contexts/CartContext";
+import SearchBar from "./SearchBar";
 
 function Nav() {
   const { cart, addToCart } = useContext(CartContext);
@@ -35,19 +36,7 @@ function Nav() {
                   <Image src={"/assets/Vivo.png"} width={150} height={50} />
                 </figure>
               </Link>
-              <div className={styles.input__container}>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className={styles.input}
-                />
-                <div className={styles.search__container}>
-                  <FontAwesomeIcon
-                    icon={faMagnifyingGlass}
-                    className={styles.search__icon}
-                  />
-                </div>
-              </div>
+                <SearchBar/>
               <div className={styles.account__container}>
                 <FontAwesomeIcon icon={faUser} />
                 <Link href="/cart">
@@ -68,14 +57,14 @@ function Nav() {
             <div className={styles.nav__bottom}>
               <ul className={styles.nav__links}>
                 <li className={styles.nav__link}>
-                  <a className={styles.link} href="/">
+                  <Link className={styles.link} href="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className={styles.nav__link}>
-                  <a className={styles.link} href="/">
+                  <Link className={styles.link} href="/">
                     Water Bottles
-                  </a>
+                  </Link>
                 </li>
                 <li className={styles.nav__link}>
                   <Link className={styles.link} href="/aboutus">
@@ -83,9 +72,9 @@ function Nav() {
                   </Link>
                 </li>
                 <li className={styles.nav__link}>
-                  <a className={styles.link} href="/">
+                  <Link className={styles.link} href="/">
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

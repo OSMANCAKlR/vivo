@@ -4,6 +4,7 @@ import styles from "../styles/Cart.module.css"
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
 
 
@@ -69,10 +70,10 @@ useEffect(() => {
             return (
               <div className={styles.product__container} key={product.id}>
                 <div className={styles.product__wrapperCart}>
-                  <img className={styles.cart__img} src={product.image.src} />
+                  <Image className={styles.cart__img} src={product.image} />
                   <div className={styles.product__information}>
                     <span className={styles.cart__title}>{product.title} </span>
-                    <span>${product.price.toFixed(2)}</span>
+                    <span>${product.price}</span>
                     <button
                       className={styles.delete__button}
                       onClick={() => removeItem(product)}
