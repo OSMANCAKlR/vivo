@@ -77,7 +77,7 @@ function Nav() {
                   </Link>
                 </li>
                 <li className={styles.nav__link}>
-                  <Link className={styles.link} href="/">
+                  <Link className={styles.link} href="/contactus">
                     Contact Us
                   </Link>
                 </li>
