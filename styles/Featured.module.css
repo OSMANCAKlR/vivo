@@ -26,3 +26,17 @@
     border: none;
     border-radius: 8px;
 }
+
+.product__figure {
+    height: 300px;
+    width: auto;
+    cursor: pointer;
+}
+
+.product__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+
+}

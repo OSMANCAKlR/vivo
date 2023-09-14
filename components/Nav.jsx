@@ -25,6 +25,11 @@ function Nav() {
   }, [cart]);
 
   console.log();
+
+  const notReadyClick = () => {
+    window.alert("Sorry, The account system isn't quite ready yet!");
+  };
+
   return (
     <>
       <div className="container">
@@ -38,7 +43,7 @@ function Nav() {
               </Link>
                 <SearchBar/>
               <div className={styles.account__container}>
-                <FontAwesomeIcon icon={faUser} />
+                <FontAwesomeIcon icon={faUser} className={styles.cart__icon} onClick={notReadyClick}/>
                 <Link href="/cart">
                   <div className={styles.cart__container}>
                     <FontAwesomeIcon

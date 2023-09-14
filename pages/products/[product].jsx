@@ -20,9 +20,9 @@ function Product() {
   const router = useRouter();
   const { product } = router.query;
 
-  // Check if the 'product' variable is defined
+  // Check if the product variable is defined
   if (!product) {
-    // Handle the case when 'product' is not defined (initial render)
+    // Handle the case when product is not defined 
     return null;
   }
 
@@ -37,7 +37,6 @@ function Product() {
   );
 
   if (!selectedProduct) {
-    // Handle the case when the product is not found
     return <div>Product not found</div>;
   }
 
