@@ -5,6 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useState } from "react";
 import { products } from "@/data";
+import { AuthContextProvider } from "@/contexts/AuthContent";
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }) {
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }) {
   }
   return (
     <>
+    <AuthContextProvider>
       <CartContext.Provider
         value={{
           cart,
@@ -49,6 +51,7 @@ export default function App({ Component, pageProps }) {
         <Nav />
         <Component {...pageProps} />
       </CartContext.Provider>
+    </AuthContextProvider>
     </>
   );
 }

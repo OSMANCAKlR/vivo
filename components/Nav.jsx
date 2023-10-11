@@ -10,8 +10,36 @@ import {
 import Link from "next/link";
 import CartContext from "@/contexts/CartContext";
 import SearchBar from "./SearchBar";
+import { UserAuth } from "@/contexts/AuthContent";
 
 function Nav() {
+  const { user, googleSignIn, logOut } = UserAuth();
+  const [loading, setLoading] = useState(true);
+
+  const handleSignin = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      setLoading(false);
+    };
+    checkAuthentication();
+  }, [user]);
+  
   const { cart, addToCart } = useContext(CartContext);
   const [numberOfItems, setNumberOfItems] = useState(0);
 
@@ -26,10 +54,7 @@ function Nav() {
 
   console.log();
 
-  const notReadyClick = () => {
-    window.alert("Sorry, The account system isn't quite ready yet!");
-  };
-
+ 
   return (
     <>
       <div className="container">
@@ -43,7 +68,41 @@ function Nav() {
               </Link>
                 <SearchBar/>
               <div className={styles.account__container}>
-                <FontAwesomeIcon icon={faUser} className={styles.cart__icon} onClick={notReadyClick}/>
+              {loading ? (
+              <div className={styles.skeleton__container}>
+                <div className={styles.skeleton__loadingState}> </div>
+                <div className={styles.skeleton__loadingState}> </div>
+              </div>
+            ) : !user ? (
+              <>
+                <button onClick={handleSignin} className={styles.nav__login}>
+                  Login
+                </button>
+                <button onClick={handleSignin} className={styles.nav__login}>
+                  Sign in
+                </button>
+              </>
+            ) : (
+              <div className={styles.account__container}>
+                <div>
+                  <Image
+                    src={user.photoURL}
+                    width={60}
+                    height={60}
+                    className={styles.account__icon}
+                  />
+                </div>
+                <div className={styles.account__dropdown}>
+                    <Link className={styles.account__links}  href="/profile">
+                      Profile
+                    </Link>
+                    <Link className={styles.account__links}  href="/account-settings">
+                      Account Settings
+                    </Link>
+                    <span className={styles.account__links} onClick={handleSignOut}>Log Out</span>
+                </div>
+              </div>
+            )}
                 <Link href="/cart">
                   <div className={styles.cart__container}>
                     <FontAwesomeIcon

@@ -9,6 +9,7 @@
     gap: 24px;
     color: #415fff;
     font-size: 24px;
+    align-items: center;
 }
 
 .nav__links {
@@ -104,3 +105,81 @@
     z-index: 99;
     cursor: pointer;
 }
+
+.nav__register, .nav__login {
+    background-color:  #007aff;
+    color: white;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.skeleton__container {
+    display: flex;
+    gap: 48px;
+}
+
+.skeleton__loadingState {
+    background-color: rgb(227, 227, 227) !important;
+    border-radius: 8px;
+    width: 100px;
+    height: 30px;
+}
+
+.skeleton__loadingState:nth-child(1)
+{
+    width: 200px;
+}
+
+.account__icon {
+    border-radius: 99px;
+}
+
+.account__container {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .account__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .account__dropdown {
+    top: 100%;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    padding: 14px;
+    width: 170px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all ease 300ms;
+    gap: 14px;
+  }
+
+
+  
+  .account__container:hover .account__dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    opacity: 1;
+  }
+
+  
+
+  .account__links {
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    
+  }
