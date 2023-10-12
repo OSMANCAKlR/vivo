@@ -1,0 +1,11 @@
+.input_group {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    margin: 16px 0;
+  }
+  
+  .input_group label {
+    margin-bottom: 4px;
+  }
+  

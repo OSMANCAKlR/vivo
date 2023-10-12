@@ -4,17 +4,17 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
-  faMagnifyingGlass,
-  faUser,
+  faTruckMonster
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import CartContext from "@/contexts/CartContext";
 import SearchBar from "./SearchBar";
-import { UserAuth } from "@/contexts/AuthContent";
+import { useAuth } from "@/contexts/AuthContent";
 
 function Nav() {
-  const { user, googleSignIn, logOut } = UserAuth();
-  const [loading, setLoading] = useState(true);
+  const { user, googleSignIn, logOut } = useAuth();
+
+  const [loading, setLoading] = useState(false);
 
   const handleSignin = async () => {
     try {
@@ -34,11 +34,12 @@ function Nav() {
 
   useEffect(() => {
     const checkAuthentication = async () => {
+      setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 500));
       setLoading(false);
     };
     checkAuthentication();
-  }, [user]);
+  }, [user, setLoading]);
   
   const { cart, addToCart } = useContext(CartContext);
   const [numberOfItems, setNumberOfItems] = useState(0);
@@ -52,7 +53,6 @@ function Nav() {
     setNumberOfItems(counter);
   }, [cart]);
 
-  console.log();
 
  
   return (
@@ -81,16 +81,23 @@ function Nav() {
                 <button onClick={handleSignin} className={styles.nav__login}>
                   Sign in
                 </button>
+                <Link href="/sign-up" className={styles.nav__login}>
+                      New Sign Up
+                    </Link>
               </>
             ) : (
               <div className={styles.account__container}>
                 <div>
+                {user.photoURL ? (
                   <Image
                     src={user.photoURL}
                     width={60}
                     height={60}
                     className={styles.account__icon}
-                  />
+                  /> 
+                  ) : (
+                    <p style={{ fontSize: "14px" }}>{user.displayName}</p>
+                      )}
                 </div>
                 <div className={styles.account__dropdown}>
                     <Link className={styles.account__links}  href="/profile">
