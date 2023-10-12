@@ -4,7 +4,8 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
-  faTruckMonster
+  faTruckMonster,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import CartContext from "@/contexts/CartContext";
@@ -75,15 +76,12 @@ function Nav() {
               </div>
             ) : !user ? (
               <>
-                <button onClick={handleSignin} className={styles.nav__login}>
+                <Link href="/login" className={styles.nav__login}>
                   Login
-                </button>
-                <button onClick={handleSignin} className={styles.nav__login}>
-                  Sign in
-                </button>
-                <Link href="/sign-up" className={styles.nav__login}>
-                      New Sign Up
-                    </Link>
+                </Link>
+                <Link href="/signup" className={styles.nav__login}>
+                    Sign Up
+                </Link>
               </>
             ) : (
               <div className={styles.account__container}>
@@ -96,7 +94,7 @@ function Nav() {
                     className={styles.account__icon}
                   /> 
                   ) : (
-                    <p style={{ fontSize: "14px" }}>{user.displayName}</p>
+                    <div class={styles.account__figure}><FontAwesomeIcon className={styles.user__figure} icon={faUser} /> </div>
                       )}
                 </div>
                 <div className={styles.account__dropdown}>

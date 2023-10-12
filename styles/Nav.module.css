@@ -176,3 +176,20 @@
   text-decoration: none;
   color: black;    
 }
+
+
+.account__figure {
+  width: 60px;
+  height: 60px;
+  border-radius: 99px;
+  background-color: rgb(177, 177, 177);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.user__figure {
+  color: white;
+  font-size: 24px;
+}
