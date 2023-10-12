@@ -20,9 +20,12 @@ steps:
     node -v
     npm install
     npm run build
-    npm test
   displayName: 'npm install and build'
-
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '/vivo'
+    customCommand: 'npm test'
 - task: PublishTestResults@2
   inputs:
       testResultsFormat: 'JUnit'
