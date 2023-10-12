@@ -26,10 +26,6 @@ jobs:
     displayName: >
       npm test
 
-  - script: |
-      npm test
-    displayName: >
-      npm test (again)
 
 
 
