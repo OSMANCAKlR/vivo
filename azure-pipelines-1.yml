@@ -18,8 +18,9 @@ jobs:
 
   - script: |
       npm install
+      npm build
     displayName: >
-      npm install
+      npm install and build
 
   - script: |
       npm test
