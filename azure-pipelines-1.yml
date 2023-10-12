@@ -24,7 +24,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '/vivo'
+    workingDir: '/'
     customCommand: 'npm test'
 - task: PublishTestResults@2
   inputs:
