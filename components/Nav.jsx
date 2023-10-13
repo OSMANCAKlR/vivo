@@ -4,17 +4,18 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
-  faMagnifyingGlass,
-  faUser,
+  faTruckMonster,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import CartContext from "@/contexts/CartContext";
 import SearchBar from "./SearchBar";
-import { UserAuth } from "@/contexts/AuthContent";
+import { useAuth } from "@/contexts/AuthContent";
 
 function Nav() {
-  const { user, googleSignIn, logOut } = UserAuth();
-  const [loading, setLoading] = useState(true);
+  const { user, googleSignIn, logOut } = useAuth();
+
+  const [loading, setLoading] = useState(false);
 
   const handleSignin = async () => {
     try {
@@ -34,11 +35,12 @@ function Nav() {
 
   useEffect(() => {
     const checkAuthentication = async () => {
+      setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 500));
       setLoading(false);
     };
     checkAuthentication();
-  }, [user]);
+  }, [user, setLoading]);
   
   const { cart, addToCart } = useContext(CartContext);
   const [numberOfItems, setNumberOfItems] = useState(0);
@@ -52,7 +54,6 @@ function Nav() {
     setNumberOfItems(counter);
   }, [cart]);
 
-  console.log();
 
  
   return (
@@ -75,22 +76,26 @@ function Nav() {
               </div>
             ) : !user ? (
               <>
-                <button onClick={handleSignin} className={styles.nav__login}>
+                <Link href="/login" className={styles.nav__login}>
                   Login
-                </button>
-                <button onClick={handleSignin} className={styles.nav__login}>
-                  Sign in
-                </button>
+                </Link>
+                <Link href="/signup" className={styles.nav__login}>
+                    Sign Up
+                </Link>
               </>
             ) : (
               <div className={styles.account__container}>
                 <div>
+                {user.photoURL ? (
                   <Image
                     src={user.photoURL}
                     width={60}
                     height={60}
                     className={styles.account__icon}
-                  />
+                  /> 
+                  ) : (
+                    <div class={styles.account__figure}><FontAwesomeIcon className={styles.user__figure} icon={faUser} /> </div>
+                      )}
                 </div>
                 <div className={styles.account__dropdown}>
                     <Link className={styles.account__links}  href="/profile">
