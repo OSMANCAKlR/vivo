@@ -2,9 +2,10 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider,
            createUserWithEmailAndPassword, signInWithEmailAndPassword ,
           updateProfile,
-          sendPasswordResetEmail,
+          sendPasswordResetEmail,createPost
 } from "firebase/auth";
-import {auth} from "../firebase/initFireBase"
+import {auth, db} from "../firebase/initFireBase"
+import { addDoc, collection } from "firebase/firestore";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -53,6 +54,14 @@ export const AuthContextProvider = ({ children }) => {
     signOut(auth);
   }
 
+  const createPost = ({message}) => {
+    const post = {
+      message: message, 
+      uid: user.uid,
+    };
+    addDoc(collection(db, "tickets"), post)
+  }
+
   const createAccountWithEmailPassword = async ({ name, email, password }) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -85,7 +94,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, resetPassword, error }}
+    <AuthContext.Provider value={{ user, collection, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, resetPassword, addDoc, error, createPost }}
     >
       {children}
     </AuthContext.Provider>
