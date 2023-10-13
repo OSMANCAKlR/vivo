@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import styles from "../styles/ContactUs.module.css";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Image from "next/image";
 import image from "../assets/heroimg.jpg";
 
@@ -10,12 +11,28 @@ function ContactUs() {
   const [enquiry, setEnquiry] = useState("");
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can handle form submission logic here, e.g., sending data to a server
-    console.log("Email:", email);
-    console.log("Enquiry:", enquiry);
-  };
+
+    try {
+      // Add a new document to the Firestore collection
+      const contactCollection = collection(db, "tickets");
+      await addDoc(contactCollection, {
+        email,
+        enquiry,
+        timestamp: serverTimestamp(),
+      });
+
+      // Clear the form fields or handle success
+      setEmail("");
+      setEnquiry("");
+      
+      // Handle success or display a success message
+    } catch (error) {
+      // Handle the error, e.g., display an error message
+      console.error("Error adding document: ", error);
+    }
+  } 
 
   return (
     <>

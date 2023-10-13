@@ -104,9 +104,6 @@ function Nav() {
                     <Link className={styles.account__links}  href="/account-settings">
                       Account Settings
                     </Link>
-                    <Link className={styles.account__links}  href="/ticket">
-                      Submit a ticket
-                    </Link>
                     <span className={styles.account__links} onClick={handleSignOut}>Log Out</span>
                 </div>
               </div>
