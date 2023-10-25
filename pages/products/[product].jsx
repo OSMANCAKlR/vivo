@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { products } from "../../data"; // Assuming your data.js is in a folder named data
 import styles from "../../styles/ProductPage.module.css";
 import CartContext from "@/contexts/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/contexts/AuthContent";
 
 function Product() {
   const { cart, addToCart } = useContext(CartContext);
+  const { getAllProducts } = useAuth();
+  const [products, setProducts] = useState([]); 
 
   function addProductToCart(product) {
     const productExists = cart.find((item) => item.id === product.id);
@@ -16,6 +18,23 @@ function Product() {
     }
     addToCart(product);
   }
+
+  
+
+
+  const handleGetAllProducts = async () => {
+    try {
+      const fetchedProducts = await getAllProducts();
+      setProducts(fetchedProducts);
+    } catch (error) {
+      console.log(error.message + "this is the error");
+    }
+  };
+
+  useEffect(() => {
+    // Fetch products when the component loads
+    handleGetAllProducts();
+  }, []);
 
   const router = useRouter();
   const { product } = router.query;
@@ -32,7 +51,7 @@ function Product() {
   // Find the product that matches the formatted product name from the URL
   const selectedProduct = products.find(
     (p) =>
-      p.title.toLowerCase().replace(/ /g, "") ===
+      p.name.toLowerCase().replace(/ /g, "") ===
       formattedProduct.toLowerCase().replace(/ /g, "")
   );
 
@@ -45,10 +64,10 @@ function Product() {
       <div className="row">
         <div className={styles.product__wrapper}>
           <div className={styles.product__container}>
-            <Image src={selectedProduct.image} alt={selectedProduct.title} />
+            <img className={styles.image} src={selectedProduct.image} alt={selectedProduct.name} />
           </div>
           <div className={styles.description__container}>
-            <h1 className={styles.product__title}>{selectedProduct.title}</h1>
+            <h1 className={styles.product__title}>{selectedProduct.name}</h1>
             <p className={styles.product__description}>
               {selectedProduct.description}
             </p>

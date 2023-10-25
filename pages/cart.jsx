@@ -70,9 +70,9 @@ useEffect(() => {
             return (
               <div className={styles.product__container} key={product.id}>
                 <div className={styles.product__wrapperCart}>
-                  <Image className={styles.cart__img} src={product.image} />
+                  <img className={styles.cart__img} src={product.image} />
                   <div className={styles.product__information}>
-                    <span className={styles.cart__title}>{product.title} </span>
+                    <span className={styles.cart__title}>{product.name} </span>
                     <span>${product.price}</span>
                     <button
                       className={styles.delete__button}

@@ -14,8 +14,12 @@ import { useAuth } from "@/contexts/AuthContent";
 
 function Nav() {
   const { user, googleSignIn, logOut } = useAuth();
+  const adminUserIds = ["XzIcjpeQIYTbTdHExDbyCbOfFA42"];
+  const isUserAdmin = adminUserIds.includes(user?.uid);
+
 
   const [loading, setLoading] = useState(false);
+  console.log(user)
 
   const handleSignin = async () => {
     try {
@@ -104,6 +108,14 @@ function Nav() {
                     <Link className={styles.account__links}  href="/account-settings">
                       Account Settings
                     </Link>
+                    <Link className={styles.account__links}  href="/ticket">
+                      Need Help?
+                    </Link>
+                    {isUserAdmin && (
+                      <Link href="/admin" className={styles.account__links}>
+                        Admin Dashboard
+                      </Link>
+                    )}
                     <span className={styles.account__links} onClick={handleSignOut}>Log Out</span>
                 </div>
               </div>
@@ -138,11 +150,6 @@ function Nav() {
                 <li className={styles.nav__link}>
                   <Link className={styles.link} href="/aboutus">
                     About us
-                  </Link>
-                </li>
-                <li className={styles.nav__link}>
-                  <Link className={styles.link} href="/contactus">
-                    Contact Us
                   </Link>
                 </li>
               </ul>

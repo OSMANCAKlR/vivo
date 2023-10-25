@@ -5,7 +5,7 @@ import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider,
           sendPasswordResetEmail,createPost
 } from "firebase/auth";
 import {auth, db} from "../firebase/initFireBase"
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -58,8 +58,32 @@ export const AuthContextProvider = ({ children }) => {
     const post = {
       message: message, 
       uid: user.uid,
+      name: user.displayName,
+      email: user.email,
     };
     addDoc(collection(db, "tickets"), post)
+  }
+
+  const createProduct = ({name, price, description, image}) => {
+    const post = {
+      name: name, 
+      price: price,
+      description: description,
+      image: image,
+    };
+    addDoc(collection(db, "products"), post)
+  }
+
+  async function getAllPosts() {
+    const { docs } = await getDocs(collection(db, "tickets"));
+  const posts = docs.map(elem => ({...elem.data(), id: elem.id}));
+  return posts; // Make sure to return the posts
+  }
+
+  async function getAllProducts() {
+    const { docs } = await getDocs(collection(db, "products"));
+  const posts = docs.map(elem => ({...elem.data(), id: elem.id}));
+  return posts; // Make sure to return the posts
   }
 
   const createAccountWithEmailPassword = async ({ name, email, password }) => {
@@ -94,7 +118,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, collection, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, resetPassword, addDoc, error, createPost }}
+    <AuthContext.Provider value={{ user, collection, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, getAllProducts, createProduct, resetPassword, addDoc, error, createPost, getAllPosts }}
     >
       {children}
     </AuthContext.Provider>

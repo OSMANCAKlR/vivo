@@ -1,0 +1,52 @@
+.tickets__container {
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 8px;
+}
+
+.tickets_title {
+    margin-bottom: 24px;
+}
+
+.ticket__information {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.line {
+    margin-bottom: 14px;
+}
+
+.admin__title {
+    font-size: 34px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    color: #415fff;
+}
+
+.admin__para{
+    margin-bottom: 24px;
+}
+
+.getAllPosts__button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product__form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.input {
+    padding: 14px;
+}

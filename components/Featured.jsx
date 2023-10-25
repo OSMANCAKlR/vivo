@@ -1,15 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "../styles/Featured.module.css";
 
 import Product from "./ui/Product";
-import { products } from "@/data";
 import { useRouter } from "next/router";
 import CartContext from "@/contexts/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/contexts/AuthContent";
+
 function Featured() {
   const router = useRouter();
   const { cart, addToCart } = useContext(CartContext);
+  const { getAllProducts } = useAuth();
+  const [products, setProducts] = useState([]); // Store the fetched products
+
+  useEffect(() => {
+    // Fetch products when the component loads
+    handleGetAllProducts();
+  }, []);
 
   function addProductToCart(product) {
     const productExists = cart.find((item) => item.id === product.id);
@@ -19,8 +27,17 @@ function Featured() {
     addToCart(product);
   }
 
+  const handleGetAllProducts = async () => {
+    try {
+      const fetchedProducts = await getAllProducts();
+      setProducts(fetchedProducts);
+    } catch (error) {
+      console.log(error.message + "this is the error");
+    }
+  };
+
   const handleProductClick = (selectedProduct) => {
-    const productSlug = selectedProduct.title
+    const productSlug = selectedProduct.name
       .toLowerCase()
       .replace(/\s+/g, "-");
     const productPageUrl = `/products/${productSlug}`;
@@ -28,21 +45,20 @@ function Featured() {
     router.push(productPageUrl);
   };
 
-  return (
+   return (
     <section id="featured">
       <div className="container">
         <div className="row">
           <h2>Our latest bottles</h2>
           <div className={styles.featured__wrapper}>
-            {products.map((product) => (
+            {products.slice(0,4).map((product) => (
               <div className={styles.product__container} key={product.id}>
-                <figure  onClick={() => handleProductClick(product)} className={styles.product__figure}>
-                  <Image src={product.image} className={styles.product__img} />
+                <figure onClick={() => handleProductClick(product)} className={styles.product__figure}>
+                  <img src={product.image} className={styles.product__img} alt={product.name} width={200} height={200} />
                 </figure>
                 <Product
-                  title={product.title}
+                  title={product.name}
                   price={product.price}
-                  rating={product.rating}
                   key={product.id}
                 />
                 {cart.find((item) => item.id === product.id) ? (

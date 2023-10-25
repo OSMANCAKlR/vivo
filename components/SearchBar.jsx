@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { products } from "../data"; // Import your product data
 import styles from "../styles/Nav.module.css";
 import { useRouter } from "next/router";
+import { useAuth } from "@/contexts/AuthContent";
 
 function SearchBar() {
   const router = useRouter();
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const { getAllProducts } = useAuth();
+  const [products, setProducts] = useState([]); 
+
+  const handleGetAllProducts = async () => {
+    try {
+      const fetchedProducts = await getAllProducts();
+      setProducts(fetchedProducts);
+    } catch (error) {
+      console.log(error.message + "this is the error");
+    }
+  };
+
+  useEffect(() => {
+    // Fetch products when the component loads
+    handleGetAllProducts();
+  }, []);
 
   // Update suggestions based on user input
   const handleInputChange = (e) => {
@@ -19,7 +36,7 @@ function SearchBar() {
     if (searchTerm.length >= 2) {
       // Filter products that match the search term
       const filteredSuggestions = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm)
+        product.name.toLowerCase().includes(searchTerm)
       );
       setSuggestions(filteredSuggestions);
     } else {
@@ -31,7 +48,7 @@ function SearchBar() {
   // Handle suggestion selection
   const handleSuggestionClick = (selectedProduct) => {
     // Navigate to the selected product's page using Next.js Link
-    const productSlug = selectedProduct.title
+    const productSlug = selectedProduct.name
       .toLowerCase()
       .replace(/\s+/g, "-");
     const productPageUrl = `/products/${productSlug}`;
@@ -58,7 +75,7 @@ function SearchBar() {
                 className={styles.suggestion}
                 onClick={() => handleSuggestionClick(product)}
               >
-                {product.title}{" "}
+                {product.name}{" "}
                 - ${product.price}
               </div>
             ))}

@@ -1,0 +1,31 @@
+.tickets__title {
+    font-size: 34px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    color: #415fff;
+}
+
+.tickets__para {
+    margin-bottom: 24px;
+}
+
+.textarea__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea {
+    height: 200px;
+    padding: 12px;
+}
+
+.submit__button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 24px;
+}
