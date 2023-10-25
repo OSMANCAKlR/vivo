@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { products } from "../data"; // Import your product data
 import styles from "../styles/Nav.module.css";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContent";

@@ -134,7 +134,7 @@ useEffect(() => {
       <ul className={styles.product__list}>
         {cart.map((product) => (
           <p key={product.id} className={styles.product__item}>
-            {product.title}
+            {product.name}
           </p>
         ))}
       </ul>
