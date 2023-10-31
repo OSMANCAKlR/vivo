@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "../styles/Featured.module.css";
 
-import Product from "./ui/Product";
+
 import { useRouter } from "next/router";
 import CartContext from "@/contexts/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContent";
+import Product from "@/components/ui/Product";
 
-function Featured() {
+function waterbottles() {
   const router = useRouter();
   const { cart, addToCart } = useContext(CartContext);
   const { getAllProducts } = useAuth();
@@ -32,6 +33,7 @@ function Featured() {
       const fetchedProducts = await getAllProducts();
       setProducts(fetchedProducts);
     } catch (error) {
+      console.log(error.message + "this is the error");
     }
   };
 
@@ -48,9 +50,9 @@ function Featured() {
     <section id="featured">
       <div className="container">
         <div className="row">
-          <h2>Our latest bottles</h2>
+          <h2>All Bottles!</h2>
           <div className={styles.featured__wrapper}>
-            {products.slice(0,4).map((product) => (
+            {products.map((product) => (
               <div className={styles.product__container} key={product.id}>
                 <figure onClick={() => handleProductClick(product)} className={styles.product__figure}>
                   <img src={product.image} className={styles.product__img} alt={product.name} width={200} height={200} />
@@ -83,4 +85,4 @@ function Featured() {
   );
 }
 
-export default Featured;
+export default waterbottles;

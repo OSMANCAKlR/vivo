@@ -212,6 +212,11 @@
     font-size: 24px;
   }
 
+  .btn__checkout:disabled {
+            cursor:not-allowed;
+            background-color: grey;
+    }
+
 @media (max-width: 480px) { 
 
     .cart__empty {

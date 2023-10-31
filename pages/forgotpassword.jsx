@@ -9,7 +9,6 @@ function forgotpassword() {
 
   const handleResetPassword = async () => {
     const email = emailRef.current.value;
-    console.log(email);
     try {
       await resetPassword({
         email,

@@ -5,15 +5,35 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
+import { useAuth } from '@/contexts/AuthContent';
 
 
 
 function cart() {
+  const { user, createOrder } = useAuth();
   const { cart, setCart } = useContext(CartContext);
   const [totalAmount, setTotalAmount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(cart)
+  const handleCreateOrder = async () => {
+    try {
+      const products = cart.map((item) => ({
+        name: item.name,
+        price: item.price,
+      }));
+  
+      // Get the current date and time
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString(); // Adjust the format as needed
+      const formattedTime = currentDate.toLocaleTimeString(); // Adjust the format as needed
+  
+      // Create the order data with date and time
+      await createOrder({ products, date: formattedDate, time: formattedTime });
+    } catch (error) {
+      console.log(error.message + "this is the error");
+    }
+  };
+
   function removeItem(item) {
     setCart(cart.filter((product) => product.id !== item.id));
   }
@@ -44,7 +64,7 @@ useEffect(() => {
 
   const handleCheckoutClick = () => {
     setIsModalOpen(true);
-    console.log("true")
+    handleCreateOrder();
   };
 
   const handleCloseModal = () => {
@@ -116,7 +136,7 @@ useEffect(() => {
             <div className={styles.price__row}>
               <p>Total <span>${total().toFixed(2)}</span></p>
             </div>
-            <button  className={styles.btn__checkout} onClick={handleCheckoutClick}  >
+            <button   disabled={cart.length <= 0}  className={styles.btn__checkout} onClick={handleCheckoutClick}  >
               Proceed to checkout
             </button>
           </div>
