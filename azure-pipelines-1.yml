@@ -12,11 +12,19 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '18.17.1'
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
-- script: |
-    node -v
+- script: 
+    npm cache clean --force
+  displayName: 'Clear Cache'
+  
+- script: 
+    npm install react-simple-star-rating
+  displayName: Install star-rating
+  
+- script:
     npm install
     npm run build
   displayName: 'npm install and build'
+
