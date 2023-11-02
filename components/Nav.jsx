@@ -19,6 +19,7 @@ function Nav() {
 
 
   const [loading, setLoading] = useState(false);
+  console.log(user)
 
   const handleSignin = async () => {
     try {
@@ -104,6 +105,9 @@ function Nav() {
                     <Link className={styles.account__links}  href="/profile">
                       Profile
                     </Link>
+                    <Link className={styles.account__links}  href="/account-settings">
+                      Account Settings
+                    </Link>
                     <Link className={styles.account__links}  href="/ticket">
                       Need Help?
                     </Link>
@@ -139,7 +143,7 @@ function Nav() {
                   </Link>
                 </li>
                 <li className={styles.nav__link}>
-                  <Link className={styles.link} href="/waterbottles">
+                  <Link className={styles.link} href="/">
                     Water Bottles
                   </Link>
                 </li>

@@ -2,14 +2,11 @@
     display: flex;
     margin-top:14px;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 24px
 }
 
 .product__container {
     width: calc(100% / 4.4);
     transition: all 300ms ease;
-    flex-grow: 1;
 }
 
 .product__checkout {
@@ -39,7 +36,7 @@
 .product__img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px;
 
 }

@@ -32,6 +32,7 @@ function Featured() {
       const fetchedProducts = await getAllProducts();
       setProducts(fetchedProducts);
     } catch (error) {
+      console.log(error.message + "this is the error");
     }
   };
 
