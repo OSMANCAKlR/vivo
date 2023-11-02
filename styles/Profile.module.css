@@ -1,19 +1,33 @@
 .order__title {
-    margin-top: 24px;
-    font-size: 24px;
-    font-weight: 500;
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 500;
 }
 
-
 .order__container {
-    padding: 24px;
   margin-top: 24px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 8px;
 }
 
 .order__information {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 14px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 16px;
+  border: 1px solid rgba(149, 157, 165, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 24px;
+}
+
+.button__submit {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button__submit:hover {
+  background-color: #0056b3;
 }

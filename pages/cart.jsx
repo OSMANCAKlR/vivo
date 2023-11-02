@@ -1,13 +1,11 @@
-import CartContext from '@/contexts/CartContext';
-import React, { useContext, useEffect, useState } from 'react'
-import styles from "../styles/Cart.module.css"
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
-import { useAuth } from '@/contexts/AuthContent';
-
-
+import CartContext from "@/contexts/CartContext";
+import React, { useContext, useEffect, useState } from "react";
+import styles from "../styles/Cart.module.css";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import { useAuth } from "@/contexts/AuthContent";
 
 function cart() {
   const { user, createOrder } = useAuth();
@@ -18,17 +16,24 @@ function cart() {
   const handleCreateOrder = async () => {
     try {
       const products = cart.map((item) => ({
+        id: item.id,
         name: item.name,
         price: item.price,
+        quantity: item.quantity,
       }));
-  
+
       // Get the current date and time
       const currentDate = new Date();
       const formattedDate = currentDate.toLocaleDateString(); // Adjust the format as needed
       const formattedTime = currentDate.toLocaleTimeString(); // Adjust the format as needed
-  
+
       // Create the order data with date and time
-      await createOrder({ products, date: formattedDate, time: formattedTime });
+      await createOrder({
+        products,
+        date: formattedDate,
+        time: formattedTime,
+        totalAmount,
+      });
     } catch (error) {
       console.log(error.message + "this is the error");
     }
@@ -46,7 +51,7 @@ function cart() {
     );
   }
 
-useEffect(() => {
+  useEffect(() => {
     let amount = 0;
     cart.forEach((item) => {
       amount += item.price * item.quantity;
@@ -74,14 +79,11 @@ useEffect(() => {
     <section id="cart">
       <div className="row">
         <Link href="/">
-          <FontAwesomeIcon
-            className={styles.cart__arrow}
-            icon={faLeftLong}
-          />
+          <FontAwesomeIcon className={styles.cart__arrow} icon={faLeftLong} />
         </Link>
         <h1 className={styles.titleHeader}>Cart</h1>
         <div className={styles.cart__header}>
-          <p className={styles.cart__headerText} >Bottles</p>
+          <p className={styles.cart__headerText}>Bottles</p>
           <p className={styles.cart__headerText}>Quantity</p>
           <p className={styles.cart__headerText}>Price</p>
         </div>
@@ -128,43 +130,54 @@ useEffect(() => {
                 You don't have any items in your cart
               </h2>
               <Link href="/">
-                <button className={styles.product__button}>Browse Bottles</button>
+                <button className={styles.product__button}>
+                  Browse Bottles
+                </button>
               </Link>
             </div>
           )}
           <div className={styles.total}>
             <div className={styles.price__row}>
-              <p>Total <span>${total().toFixed(2)}</span></p>
+              <p>
+                Total <span>${total().toFixed(2)}</span>
+              </p>
             </div>
-            <button   disabled={cart.length <= 0}  className={styles.btn__checkout} onClick={handleCheckoutClick}  >
+            <button
+              disabled={cart.length <= 0}
+              className={styles.btn__checkout}
+              onClick={handleCheckoutClick}
+            >
               Proceed to checkout
             </button>
           </div>
         </div>
       </div>
       {isModalOpen && (
-  <div className={styles.modal__overlay}>
-    <div className={styles.modal}>
-      <span className={styles.close__button} onClick={handleCloseModal}>
-        &times;
-      </span>
-      <h2 className={styles.modal__title}>Your Order</h2>
-      <p className={styles.modal__price}>Total Price: <strong>${total().toFixed(2)}</strong></p>
-      <p className={styles.price__text}>Your order includes:</p>
-      <ul className={styles.product__list}>
-        {cart.map((product) => (
-          <p key={product.id} className={styles.product__item}>
-            {product.name}
-          </p>
-        ))}
-      </ul>
-      <p className={styles.modal__delivery}>Your order will be delivered soon.</p>
-    </div>
-  </div>
-)}
-     
+        <div className={styles.modal__overlay}>
+          <div className={styles.modal}>
+            <span className={styles.close__button} onClick={handleCloseModal}>
+              &times;
+            </span>
+            <h2 className={styles.modal__title}>Your Order</h2>
+            <p className={styles.modal__price}>
+              Total Price: <strong>${total().toFixed(2)}</strong>
+            </p>
+            <p className={styles.price__text}>Your order includes:</p>
+            <ul className={styles.product__list}>
+              {cart.map((product) => (
+                <p key={product.id} className={styles.product__item}>
+                  {product.name}
+                </p>
+              ))}
+            </ul>
+            <p className={styles.modal__delivery}>
+              Your order will be delivered soon.
+            </p>
+          </div>
+        </div>
+      )}
     </section>
-  )
+  );
 }
 
-export default cart
+export default cart;

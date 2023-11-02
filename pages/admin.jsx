@@ -42,7 +42,6 @@ function Admin() {
   const adminUserIds = [
     "XzIcjpeQIYTbTdHExDbyCbOfFA42",
     "Mh9kkgXQ8dZBG2ijXiB0GXxDTHN2",
-    "EIZJLRZvyAdrE6ZUAjzKcIdAVoq2"
   ];
   const isUserAdmin = adminUserIds.includes(user?.uid);
 

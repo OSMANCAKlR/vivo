@@ -1,24 +1,24 @@
 .ContactUs__title {
-    font-size: 34px;
-    margin-top: 24px;
-    margin-bottom: 14px;
-    color: #415fff;
+  font-size: 34px;
+  margin-top: 24px;
+  margin-bottom: 14px;
+  color: #415fff;
 }
 
 .contact_form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-  }
-  
-.form_group {
-    margin-bottom: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
 
-  /* Add these styles to your Contactus.module.css file */
+.form_group {
+  margin-bottom: 20px;
+}
+
+/* Add these styles to your Contactus.module.css file */
 .contact_form {
   /* Previous styles for centering the form */
 
@@ -44,17 +44,16 @@
   border-radius: 5px;
 }
 
-
 .button-submit {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .button-submit:hover {
-    background-color: #0056b3;
-  }
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-submit:hover {
+  background-color: #0056b3;
+}
