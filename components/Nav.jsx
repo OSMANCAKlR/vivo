@@ -14,7 +14,7 @@ import { useAuth } from "@/contexts/AuthContent";
 
 function Nav() {
   const { user, googleSignIn, logOut } = useAuth();
-  const adminUserIds = ["XzIcjpeQIYTbTdHExDbyCbOfFA42"];
+  const adminUserIds = ["XzIcjpeQIYTbTdHExDbyCbOfFA42", "EIZJLRZvyAdrE6ZUAjzKcIdAVoq2"];
   const isUserAdmin = adminUserIds.includes(user?.uid);
 
 
