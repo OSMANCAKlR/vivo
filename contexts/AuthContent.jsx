@@ -100,7 +100,16 @@ export const AuthContextProvider = ({ children }) => {
     return null;
   };
 
+  const createOrder = ({ products, date, time }) => {
+    const orderData = {
+      products: products,
+      date: date,
+      time: time,
+      uid: user.uid,
+    };
   
+    addDoc(collection(db, "orders"), orderData);
+  }
 
   async function getAllPosts() {
     const { docs } = await getDocs(collection(db, "tickets"));
@@ -157,7 +166,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, collection, createProductReview, getProductReview,  getOrderByUid, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, getAllProducts, createProduct, resetPassword, addDoc, error, createPost, getAllPosts }}
+    <AuthContext.Provider value={{ user, collection, createOrder, createProductReview, getProductReview,  getOrderByUid, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, getAllProducts, createProduct, resetPassword, addDoc, error, createPost, getAllPosts }}
     >
       {children}
     </AuthContext.Provider>

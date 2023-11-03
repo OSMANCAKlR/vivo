@@ -12,6 +12,7 @@ function Profile() {
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [reviewInfo, setReviewInfo] = useState(null);
 
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,6 +25,7 @@ function Profile() {
 
     fetchData();
   }, [getOrderByUid]);
+
 
   const handleRating = (rate) => {
     setProduct((prevState) => ({
