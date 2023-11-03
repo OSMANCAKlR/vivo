@@ -14,12 +14,11 @@ import { useAuth } from "@/contexts/AuthContent";
 
 function Nav() {
   const { user, googleSignIn, logOut } = useAuth();
-  const adminUserIds = ["XzIcjpeQIYTbTdHExDbyCbOfFA42", "EIZJLRZvyAdrE6ZUAjzKcIdAVoq2"];
+  const adminUserIds = ["XzIcjpeQIYTbTdHExDbyCbOfFA42"];
   const isUserAdmin = adminUserIds.includes(user?.uid);
 
 
   const [loading, setLoading] = useState(false);
-  console.log(user)
 
   const handleSignin = async () => {
     try {
@@ -105,9 +104,6 @@ function Nav() {
                     <Link className={styles.account__links}  href="/profile">
                       Profile
                     </Link>
-                    <Link className={styles.account__links}  href="/account-settings">
-                      Account Settings
-                    </Link>
                     <Link className={styles.account__links}  href="/ticket">
                       Need Help?
                     </Link>
@@ -143,13 +139,13 @@ function Nav() {
                   </Link>
                 </li>
                 <li className={styles.nav__link}>
-                  <Link className={styles.link} href="/">
+                  <Link className={styles.link} href="/waterbottles">
                     Water Bottles
                   </Link>
                 </li>
                 <li className={styles.nav__link}>
                   <Link className={styles.link} href="/aboutus">
-                    About us
+                    About us Now
                   </Link>
                 </li>
               </ul>
