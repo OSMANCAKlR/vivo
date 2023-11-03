@@ -5,8 +5,7 @@ import { Rating } from "react-simple-star-rating";
 
 function Profile() {
   const [orders, setOrders] = useState([]);
-  const { getProductReview, createProductReview } = useAuth();
-  const { getOrderByUid } = useAuth(); // Remove user from here
+  const { getProductReview, createProductReview, getOrderByUid  } = useAuth();
 
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [product, setProduct] = useState(null);
@@ -193,11 +192,7 @@ function Profile() {
 }
 
 function calculateTotalPrice(products) {
-  return products.reduce(
-    (total, product) =>
-      total + parseFloat(product.price) * parseFloat(product.quantity),
-    0
-  );
+  return products.reduce((total, product) => total + parseFloat(product.price), 0);
 }
 
 export default Profile;

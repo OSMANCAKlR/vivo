@@ -5,7 +5,7 @@ import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider,
           sendPasswordResetEmail,createPost
 } from "firebase/auth";
 import {auth, db} from "../firebase/initFireBase"
-import { addDoc, collection, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -74,6 +74,34 @@ export const AuthContextProvider = ({ children }) => {
     addDoc(collection(db, "products"), post)
   }
 
+  const createProductReview = ({ product, order }) => {
+    const reviewData = {
+      productId: product.id,
+      rating: product.rating,
+      uid: user.uid,
+      orderId: order.id,
+    };
+
+    addDoc(collection(db, "productReviews"), reviewData);
+  };
+
+  const getProductReview = async ({ product, order }) => {
+    const reviewRef = query(
+      collection(db, "productReviews"),
+      where("productId", "==", product.id),
+      where("orderId", "==", order.id)
+    );
+    const { docs } = await getDocs(reviewRef);
+
+    if (docs.length !== 0) {
+      return { ...docs[0].data(), id: docs[0].id };
+    }
+
+    return null;
+  };
+
+  
+
   async function getAllPosts() {
     const { docs } = await getDocs(collection(db, "tickets"));
   const posts = docs.map(elem => ({...elem.data(), id: elem.id}));
@@ -105,6 +133,17 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  async function getOrderByUid() {
+    const postCollectionRef = await query(
+      collection(db, "orders"),
+      where("uid", "==", user.uid)
+    );
+    const { docs } = await getDocs(postCollectionRef);
+    const posts = docs.map(elem => ({...elem.data(), id: elem.id}));
+    console.log(posts)
+    return posts;
+  }
+
   const signInWithEmailPassword = async ({ email, password }) => {
     await firebaseSignInWithEmailPassword(email, password);
   };
@@ -118,7 +157,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, collection, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, getAllProducts, createProduct, resetPassword, addDoc, error, createPost, getAllPosts }}
+    <AuthContext.Provider value={{ user, collection, createProductReview, getProductReview,  getOrderByUid, googleSignIn, logOut, createAccountWithEmailPassword, LoginAccountWithEmailPassword, getAllProducts, createProduct, resetPassword, addDoc, error, createPost, getAllPosts }}
     >
       {children}
     </AuthContext.Provider>
